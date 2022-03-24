@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Points</title>
+		<meta charset="UTF-9">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="./resources/css/index.css" type="text/css" rel="stylesheet">
+		<script type="text/javascript" src="./resources/js/index.js"></script>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script type="text/javascript" src="./resources/js/tailwind.config.js"></script>
+		<script>
+			let points = getPointsFromStorage()
+			if (!points){
+				points = 0
+				setPoints(0)
+			}
+
+			function addPoint(){
+				points++
+				setPointsValue()
+				setPointsInStorage(points)
+			}
+			function removePoint(){
+				points--
+				setPointsValue()
+				setPointsInStorage(points)
+			}
+
+			function setPointsValue(){
+				document.getElementById('points-value').firstChild.nodeValue = points
+			}
+		</script>	
+	</head>
+	<body class="flex flex-col w-full h-screen items-center bg-slate-900 pt-48 gap-8">
+		<section class="flex justify-center items-center w-full">
+			<img class="h-24" src="./resources/images/chart_increasing.svg" />
+			<h1 class="text-4xl text-violet-300">Points</h1>	
+			<img class="h-24" src="./resources/images/chart_decreasing.svg" />
+		</section>
+		<h2 id="points-value" class="text-violet-300 text-8xl text-center" />
+		<div class="flex flex-col gap-5 mt-8">
+			<button class="w-full rounded-full bg-violet-400 px-12 py-2 pl-4 text-slate-900 text-base flex items-center gap-2" onclick="addPoint()">
+				<img class="h-8" src="./resources/images/plus_icon.svg" />
+				<span>Add Point</span>
+			</button>
+			<button class="rounded-full bg-slate-400 px-5 py-2 pl-3 text-slate-900 text-base flex items-center gap-2" onclick="removePoint()">
+				<img class="h-8" src="./resources/images/minus_icon.svg" />
+				<span>Remove Point</span>
+			</button>
+		</div>
+		<script type="module">
+			setPointsValue()
+		</script>
+	</body>
+</html>
